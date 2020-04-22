@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace app_ui
+namespace SwissTransportUI
 {
     public partial class Form : System.Windows.Forms.Form
     {
