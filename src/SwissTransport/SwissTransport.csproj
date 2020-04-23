@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Connections.cs" />
     <Compile Include="StationBoardRoot.cs" />
+    <Compile Include="StationNotFoundEx.cs" />
     <Compile Include="Stations.cs" />
     <Compile Include="ITransport.cs" />
     <Compile Include="Transport.cs" />

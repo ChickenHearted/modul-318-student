@@ -1,6 +1,6 @@
 ﻿namespace SwissTransportUI
 {
-    partial class Form
+    partial class SwissTransportUIForm
     {
         /// <summary>
         /// Erforderliche Designervariable.

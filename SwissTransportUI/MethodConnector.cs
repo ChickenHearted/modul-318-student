@@ -19,10 +19,10 @@ namespace SwissTransportUI
         /// </summary>
         /// <param name="query"></param>
         /// <returns> AutoCompleteStringCollection </returns>
-        public AutoCompleteStringCollection GetStationSuggestions(string query)
+        public List<string> GetStationSuggestions(string query)
         {
 
-            AutoCompleteStringCollection resCollection = new AutoCompleteStringCollection();
+            List<string> resCollection = new List<string>();
             stations = transportAPI.GetStations(query);
             Query = query;
             foreach (Station station in stations.StationList)
