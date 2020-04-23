@@ -15,16 +15,16 @@ namespace SwissTransportUI
     {
 
         MethodConnector MethodConnector = new MethodConnector();
-        List<string> StationSuggestionSource = new List<string>();
+        AutoCompleteStringCollection StationSuggestionsSource = new AutoCompleteStringCollection();
 
         public SwissTransportUIForm()
         {
             InitializeComponent();
         }
 
-        private void Form_Load(object sender, EventArgs e)
+        private void SwissTransportUIForm_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         /// <summary>
@@ -40,20 +40,52 @@ namespace SwissTransportUI
             {
                 if (currtextBox.Text.Length >= 3)
                 {
-                    StationSuggestionSource = MethodConnector.GetStationSuggestions(currtextBox.Text);
-                    AutoCompleteStringCollection autoCompleteStringCollection = new AutoCompleteStringCollection();
-                    foreach (string station in StationSuggestionSource)
+                    StationSuggestionsSource = MethodConnector.GetStationSuggestions(currtextBox.Text);
+                    if (currtextBox.AutoCompleteSource != AutoCompleteSource.None)
                     {
-                        autoCompleteStringCollection.Add(station);
+                        currtextBox.AutoCompleteSource = AutoCompleteSource.None;
                     }
-                    currtextBox.AutoCompleteCustomSource = autoCompleteStringCollection;
-                    currtextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
+                    currtextBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    currtextBox.AutoCompleteCustomSource = StationSuggestionsSource;
+                    //currtextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
                 }
             }
-            catch (StationNotFoundEx)
+            catch (NoStationFoundException ex)
             {
-                StationSuggestionSource.Clear();
+                MessageBox.Show(ex.Message, "Fehler");
                 return;
+            }
+        }
+
+        /// <summary>
+        /// Method searches for Connections between txtFrom & txtTo.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSearchConnections_Click(object sender, EventArgs e)
+        {
+            if (txtFrom.Text == "" || txtTo.Text == "")
+            {
+                MessageBox.Show("Bitte gebe beide Stationen an.", "Eingabefehler");
+            }
+            else
+            {
+                ListViewItem[] searchResults = { new ListViewItem("0") };
+
+                try
+                {
+                    listConnections.Items.Clear();
+                    searchResults = MethodConnector.GetConnections(txtFrom.Text, txtTo.Text);
+                }
+                catch (NoConnectionFoundException ex)
+                {
+                    MessageBox.Show(ex.Message, "Fehler");
+                    txtFrom.Text = "";
+                    txtTo.Text = "";
+                    return;
+                }
+
+                listConnections.Items.AddRange(searchResults);
             }
         }
     }

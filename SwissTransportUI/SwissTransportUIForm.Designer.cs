@@ -28,27 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnSearch = new System.Windows.Forms.Button();
+            this.btnSearchConnections = new System.Windows.Forms.Button();
             this.lblFrom = new System.Windows.Forms.Label();
             this.lblTo = new System.Windows.Forms.Label();
             this.txtFrom = new System.Windows.Forms.TextBox();
             this.txtTo = new System.Windows.Forms.TextBox();
+            this.listConnections = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
-            // btnSearch
+            // btnSearchConnections
             // 
-            this.btnSearch.Location = new System.Drawing.Point(703, 60);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(100, 28);
-            this.btnSearch.TabIndex = 0;
-            this.btnSearch.Text = "Suchen";
-            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearchConnections.Location = new System.Drawing.Point(566, 16);
+            this.btnSearchConnections.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSearchConnections.Name = "btnSearchConnections";
+            this.btnSearchConnections.Size = new System.Drawing.Size(116, 54);
+            this.btnSearchConnections.TabIndex = 0;
+            this.btnSearchConnections.Text = "Suchen Verbindungen";
+            this.btnSearchConnections.UseVisualStyleBackColor = true;
+            this.btnSearchConnections.Click += new System.EventHandler(this.btnSearchConnections_Click);
             // 
             // lblFrom
             // 
             this.lblFrom.AutoSize = true;
-            this.lblFrom.Location = new System.Drawing.Point(68, 41);
+            this.lblFrom.Location = new System.Drawing.Point(20, 16);
             this.lblFrom.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFrom.Name = "lblFrom";
             this.lblFrom.Size = new System.Drawing.Size(32, 16);
@@ -58,7 +60,7 @@
             // lblTo
             // 
             this.lblTo.AutoSize = true;
-            this.lblTo.Location = new System.Drawing.Point(395, 41);
+            this.lblTo.Location = new System.Drawing.Point(294, 16);
             this.lblTo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTo.Name = "lblTo";
             this.lblTo.Size = new System.Drawing.Size(40, 16);
@@ -68,8 +70,7 @@
             // txtFrom
             // 
             this.txtFrom.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.txtFrom.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtFrom.Location = new System.Drawing.Point(72, 60);
+            this.txtFrom.Location = new System.Drawing.Point(24, 35);
             this.txtFrom.Margin = new System.Windows.Forms.Padding(4);
             this.txtFrom.Name = "txtFrom";
             this.txtFrom.Size = new System.Drawing.Size(261, 22);
@@ -79,28 +80,37 @@
             // txtTo
             // 
             this.txtTo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.txtTo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtTo.Location = new System.Drawing.Point(399, 60);
+            this.txtTo.Location = new System.Drawing.Point(298, 35);
             this.txtTo.Margin = new System.Windows.Forms.Padding(4);
             this.txtTo.Name = "txtTo";
             this.txtTo.Size = new System.Drawing.Size(261, 22);
             this.txtTo.TabIndex = 4;
             this.txtTo.TextChanged += new System.EventHandler(this.GetStationSuggestions);
             // 
-            // Form
+            // listConnections
+            // 
+            this.listConnections.FormattingEnabled = true;
+            this.listConnections.ItemHeight = 16;
+            this.listConnections.Location = new System.Drawing.Point(23, 74);
+            this.listConnections.Name = "listConnections";
+            this.listConnections.Size = new System.Drawing.Size(536, 276);
+            this.listConnections.TabIndex = 5;
+            // 
+            // SwissTransportUIForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(885, 351);
+            this.ClientSize = new System.Drawing.Size(695, 381);
+            this.Controls.Add(this.listConnections);
             this.Controls.Add(this.txtTo);
             this.Controls.Add(this.txtFrom);
             this.Controls.Add(this.lblTo);
             this.Controls.Add(this.lblFrom);
-            this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.btnSearchConnections);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "Form";
+            this.Name = "SwissTransportUIForm";
             this.Text = "SwissTranport";
-            this.Load += new System.EventHandler(this.Form_Load);
+            this.Load += new System.EventHandler(this.SwissTransportUIForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -108,11 +118,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button btnSearchConnections;
         private System.Windows.Forms.Label lblFrom;
         private System.Windows.Forms.Label lblTo;
         private System.Windows.Forms.TextBox txtFrom;
         private System.Windows.Forms.TextBox txtTo;
+        private System.Windows.Forms.ListBox listConnections;
     }
 }
 

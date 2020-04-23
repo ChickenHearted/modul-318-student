@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace SwissTransport
 {
-    public class StationNotFoundEx : Exception
+    public class NoConnectionFoundException : Exception
     {
-        public StationNotFoundEx()
+        public NoConnectionFoundException()
         {
 
         }
-
     }
 }

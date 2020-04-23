@@ -19,10 +19,10 @@ namespace SwissTransportUI
         /// </summary>
         /// <param name="query"></param>
         /// <returns> AutoCompleteStringCollection </returns>
-        public List<string> GetStationSuggestions(string query)
+        public AutoCompleteStringCollection GetStationSuggestions(string query)
         {
 
-            List<string> resCollection = new List<string>();
+            AutoCompleteStringCollection resCollection = new AutoCompleteStringCollection();
             stations = transportAPI.GetStations(query);
             Query = query;
             foreach (Station station in stations.StationList)
@@ -31,6 +31,25 @@ namespace SwissTransportUI
             }
 
             return resCollection;
+        }
+
+        /// <summary>
+        /// Gets Connections from the From Station, the To Station and the Date as ListViewItemArray
+        /// </summary>
+        /// <param name="FromStation"></param>
+        /// <param name="ToStation"></param>
+        /// <returns></returns>
+        public ListViewItem[] GetConnections(string FromStation, string ToStation)
+        {
+            List<ListViewItem> resultConnections = new List<ListViewItem>();
+            Connections currentConnections = transportAPI.GetConnections(FromStation, ToStation);
+            foreach (Connection connection in currentConnections.ConnectionList)
+            {
+                string[] result = { connection.From.DepartureTimestamp, connection.To.ArrivalTimestamp, connection.Duration, connection.From.Platform };
+                resultConnections.Add(new ListViewItem(result));
+            }
+
+            return resultConnections.ToArray();
         }
 
     }
