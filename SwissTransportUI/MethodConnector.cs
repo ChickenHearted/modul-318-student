@@ -39,17 +39,14 @@ namespace SwissTransportUI
         /// <param name="FromStation"></param>
         /// <param name="ToStation"></param>
         /// <returns></returns>
-        public ListViewItem[] GetConnections(string FromStation, string ToStation)
+        public Connections GetConnections(string FromStation, string ToStation)
         {
-            List<ListViewItem> resultConnections = new List<ListViewItem>();
+            /*
+            List<Connection> resultConnections = new List<Connection>();
             Connections currentConnections = transportAPI.GetConnections(FromStation, ToStation);
-            foreach (Connection connection in currentConnections.ConnectionList)
-            {
-                string[] result = { connection.From.DepartureTimestamp, connection.To.ArrivalTimestamp, connection.Duration, connection.From.Platform };
-                resultConnections.Add(new ListViewItem(result));
-            }
-
-            return resultConnections.ToArray();
+            resultConnections.AddRange(currentConnections.ConnectionList);
+            */
+            return transportAPI.GetConnections(FromStation, ToStation);
         }
 
     }

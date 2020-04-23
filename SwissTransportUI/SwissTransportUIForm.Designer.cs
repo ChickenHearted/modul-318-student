@@ -93,14 +93,14 @@
             this.listConnections.ItemHeight = 16;
             this.listConnections.Location = new System.Drawing.Point(23, 74);
             this.listConnections.Name = "listConnections";
-            this.listConnections.Size = new System.Drawing.Size(536, 276);
+            this.listConnections.Size = new System.Drawing.Size(659, 276);
             this.listConnections.TabIndex = 5;
             // 
             // SwissTransportUIForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(695, 381);
+            this.ClientSize = new System.Drawing.Size(708, 381);
             this.Controls.Add(this.listConnections);
             this.Controls.Add(this.txtTo);
             this.Controls.Add(this.txtFrom);

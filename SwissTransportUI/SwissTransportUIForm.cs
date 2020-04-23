@@ -75,18 +75,17 @@ namespace SwissTransportUI
             }
             else
             {
-                ListViewItem[] searchResults = { new ListViewItem() };
-
+                
                 try
                 {
                     listConnections.Items.Clear();
-                    searchResults = MethodConnector.GetConnections(txtFrom.Text, txtTo.Text);
+                    Connections connections = MethodConnector.GetConnections(txtFrom.Text, txtTo.Text);
                     
-                    foreach (var result in searchResults)
+                    foreach (Connection result in connections.ConnectionList)
                     {
-                        listConnections.Items.Add(result.Text);
+                        listConnections.Items.Add(result.From.Departure + ": " + result.From.Station.Name
+                            + " to " + result.To.Station.Name + " (" + result.Duration + ")");
                     }
-                    
                     //listConnections.Items.AddRange(searchResults);
                 }
                 catch (NoConnectionFoundException ex)
