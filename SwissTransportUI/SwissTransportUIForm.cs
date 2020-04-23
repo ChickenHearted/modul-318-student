@@ -24,7 +24,7 @@ namespace SwissTransportUI
 
         private void SwissTransportUIForm_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         /// <summary>
@@ -35,19 +35,24 @@ namespace SwissTransportUI
         private void GetStationSuggestions(object sender, EventArgs e)
         {
             TextBox currtextBox = (TextBox)sender;
-            
+
             try
             {
+                currtextBox.AutoCompleteSource = AutoCompleteSource.None;
                 if (currtextBox.Text.Length >= 3)
                 {
                     StationSuggestionsSource = MethodConnector.GetStationSuggestions(currtextBox.Text);
-                    if (currtextBox.AutoCompleteSource != AutoCompleteSource.None)
-                    {
-                        currtextBox.AutoCompleteSource = AutoCompleteSource.None;
-                    }
+                  
                     currtextBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
                     currtextBox.AutoCompleteCustomSource = StationSuggestionsSource;
-                    //currtextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
+                    currtextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
+                }
+                else
+                {
+                    //if (currtextBox.AutoCompleteSource != AutoCompleteSource.None)
+                    //{
+                        //currtextBox.AutoCompleteSource = AutoCompleteSource.None;
+                    //}
                 }
             }
             catch (NoStationFoundException ex)
@@ -70,12 +75,19 @@ namespace SwissTransportUI
             }
             else
             {
-                ListViewItem[] searchResults = { new ListViewItem("0") };
+                ListViewItem[] searchResults = { new ListViewItem() };
 
                 try
                 {
                     listConnections.Items.Clear();
                     searchResults = MethodConnector.GetConnections(txtFrom.Text, txtTo.Text);
+                    
+                    foreach (var result in searchResults)
+                    {
+                        listConnections.Items.Add(result.Text);
+                    }
+                    
+                    //listConnections.Items.AddRange(searchResults);
                 }
                 catch (NoConnectionFoundException ex)
                 {
@@ -84,8 +96,6 @@ namespace SwissTransportUI
                     txtTo.Text = "";
                     return;
                 }
-
-                listConnections.Items.AddRange(searchResults);
             }
         }
     }
