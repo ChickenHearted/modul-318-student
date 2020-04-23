@@ -37,9 +37,10 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(527, 49);
+            this.btnSearch.Location = new System.Drawing.Point(703, 60);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.Size = new System.Drawing.Size(100, 28);
             this.btnSearch.TabIndex = 0;
             this.btnSearch.Text = "Suchen";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -47,47 +48,59 @@
             // lblFrom
             // 
             this.lblFrom.AutoSize = true;
-            this.lblFrom.Location = new System.Drawing.Point(51, 33);
+            this.lblFrom.Location = new System.Drawing.Point(68, 41);
+            this.lblFrom.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFrom.Name = "lblFrom";
-            this.lblFrom.Size = new System.Drawing.Size(26, 13);
+            this.lblFrom.Size = new System.Drawing.Size(32, 16);
             this.lblFrom.TabIndex = 1;
             this.lblFrom.Text = "Von";
             // 
             // lblTo
             // 
             this.lblTo.AutoSize = true;
-            this.lblTo.Location = new System.Drawing.Point(296, 33);
+            this.lblTo.Location = new System.Drawing.Point(395, 41);
+            this.lblTo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTo.Name = "lblTo";
-            this.lblTo.Size = new System.Drawing.Size(33, 13);
+            this.lblTo.Size = new System.Drawing.Size(40, 16);
             this.lblTo.TabIndex = 2;
             this.lblTo.Text = "Nach";
             // 
             // txtFrom
             // 
-            this.txtFrom.Location = new System.Drawing.Point(54, 49);
+            this.txtFrom.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtFrom.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtFrom.Location = new System.Drawing.Point(72, 60);
+            this.txtFrom.Margin = new System.Windows.Forms.Padding(4);
             this.txtFrom.Name = "txtFrom";
-            this.txtFrom.Size = new System.Drawing.Size(197, 20);
+            this.txtFrom.Size = new System.Drawing.Size(261, 22);
             this.txtFrom.TabIndex = 3;
+            this.txtFrom.TextChanged += new System.EventHandler(this.GetStationSuggestions);
             // 
             // txtTo
             // 
-            this.txtTo.Location = new System.Drawing.Point(299, 49);
+            this.txtTo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtTo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtTo.Location = new System.Drawing.Point(399, 60);
+            this.txtTo.Margin = new System.Windows.Forms.Padding(4);
             this.txtTo.Name = "txtTo";
-            this.txtTo.Size = new System.Drawing.Size(197, 20);
+            this.txtTo.Size = new System.Drawing.Size(261, 22);
             this.txtTo.TabIndex = 4;
+            this.txtTo.TextChanged += new System.EventHandler(this.GetStationSuggestions);
             // 
             // Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(664, 285);
+            this.ClientSize = new System.Drawing.Size(885, 351);
             this.Controls.Add(this.txtTo);
             this.Controls.Add(this.txtFrom);
             this.Controls.Add(this.lblTo);
             this.Controls.Add(this.lblFrom);
             this.Controls.Add(this.btnSearch);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form";
             this.Text = "SwissTranport";
+            this.Load += new System.EventHandler(this.Form_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
