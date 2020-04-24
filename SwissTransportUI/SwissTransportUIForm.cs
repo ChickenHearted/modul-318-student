@@ -73,8 +73,8 @@ namespace SwissTransportUI
 
             foreach (Connection connection in connections.ConnectionList)
             {
-                listConnections.Items.Add(connection.From.Departure + ": " + connection.From.Station.Name
-                    + " to " + connection.To.Station.Name + " (" + connection.Duration + ")");
+                listConnections.Items.Add(connection.From.DateTimeDeparture.ToString("HH:mm") + " - " + connection.To.DateTimeArrival.ToString("HH:mm")
+                    + "; Abfahrt von Station: " + connection.From.Station.Name + " ( " + connection.DateTimeDuration.Minute + "Min. )");
             }
         }
 
@@ -88,15 +88,15 @@ namespace SwissTransportUI
             }
 
             List<StationBoard> stationBoardEntries = MethodConnector.GetStationBoard(txtStartStation.Text);
-            if (stationBoardEntries.Count == 0)
+            if (stationBoardEntries.Count < 1)
             {
                 MessageBox.Show("Es wurden keine Verbindungen zu der Station " + txtStartStation.Text + " gefunden.", "Fehler beim Erstellen.");
 
             }
             foreach (StationBoard entry in stationBoardEntries)
             {
-                listTimeTable.Items.Add(entry.Number + ": name : " + entry.Name
-                    + ": stop : " + entry.Stop.Departure + " : to : " + entry.To);
+                entry.Stop.ConvertDeparture();
+                listTimeTable.Items.Add("Linie " + entry.Number + " " + " um " + entry.Stop.DateTimeDeparture.ToString("HH:mm") + " Richtung " + entry.To);
             }
         }
 

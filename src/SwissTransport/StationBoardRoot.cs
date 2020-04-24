@@ -38,5 +38,12 @@ namespace SwissTransport
     {
         [JsonProperty("departure")]
         public DateTime Departure { get; set; }
+
+        public DateTime DateTimeDeparture { get; set; }
+
+        public void ConvertDeparture()
+        {
+            DateTimeDeparture = Convert.ToDateTime(Departure);
+        }
     }
 }
