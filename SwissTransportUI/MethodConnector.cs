@@ -62,5 +62,15 @@ namespace SwissTransportUI
             return transportAPI.GetStationBoard(Station, id).Entries;
         }
 
+        /// <summary>
+        /// Method gets the coordinates of the Start Station.
+        /// </summary>
+        /// <param name="Station"></param>
+        /// <returns> Connections </returns>
+        public string GetStationCoordinates(string Station)
+        {
+            return transportAPI.GetStations(Station).StationList[0].Coordinate.XCoordinate.ToString().Replace(',', '.') + "," + stations.StationList[0].Coordinate.YCoordinate.ToString().Replace(',', '.');
+        }
+
     }
 }

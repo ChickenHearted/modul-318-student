@@ -45,6 +45,7 @@
             this.dtpTime = new System.Windows.Forms.DateTimePicker();
             this.rdBtnDeparture = new System.Windows.Forms.RadioButton();
             this.rdBtnArrival = new System.Windows.Forms.RadioButton();
+            this.btnShowStation = new System.Windows.Forms.Button();
             this.tabTimeTablePage.SuspendLayout();
             this.tabConnection.SuspendLayout();
             this.tabTimeTable.SuspendLayout();
@@ -142,6 +143,7 @@
             // 
             // tabTimeTable
             // 
+            this.tabTimeTable.Controls.Add(this.btnShowStation);
             this.tabTimeTable.Controls.Add(this.listTimeTable);
             this.tabTimeTable.Controls.Add(this.btnCreateTimeTable);
             this.tabTimeTable.Controls.Add(this.txtStartStation);
@@ -232,6 +234,16 @@
             this.rdBtnArrival.Text = "Ankunft";
             this.rdBtnArrival.UseVisualStyleBackColor = true;
             // 
+            // btnShowStation
+            // 
+            this.btnShowStation.Location = new System.Drawing.Point(398, 29);
+            this.btnShowStation.Name = "btnShowStation";
+            this.btnShowStation.Size = new System.Drawing.Size(113, 41);
+            this.btnShowStation.TabIndex = 4;
+            this.btnShowStation.Text = "Station sehen";
+            this.btnShowStation.UseVisualStyleBackColor = true;
+            this.btnShowStation.Click += new System.EventHandler(this.btnShowStation_Click);
+            // 
             // SwissTransportUIForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -270,6 +282,7 @@
         private System.Windows.Forms.DateTimePicker dtpDate;
         private System.Windows.Forms.RadioButton rdBtnArrival;
         private System.Windows.Forms.RadioButton rdBtnDeparture;
+        private System.Windows.Forms.Button btnShowStation;
     }
 }
 

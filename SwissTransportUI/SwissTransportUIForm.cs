@@ -118,5 +118,18 @@ namespace SwissTransportUI
                 }
             }
         }
+
+        private void btnShowStation_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("https://google.com/maps/place/" + MethodConnector.GetStationCoordinates(txtStartStation.Text));
+            }
+            catch (NoStationFoundException ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+                return;
+            }
+        }
     }
 }
