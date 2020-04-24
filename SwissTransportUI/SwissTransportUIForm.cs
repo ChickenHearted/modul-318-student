@@ -35,24 +35,16 @@ namespace SwissTransportUI
         private void GetStationSuggestions(object sender, EventArgs e)
         {
             TextBox currtextBox = (TextBox)sender;
+            currtextBox.AutoCompleteSource = AutoCompleteSource.None;
 
-            try
+            if (currtextBox.Text.Length >= 3)
             {
-                currtextBox.AutoCompleteSource = AutoCompleteSource.None;
-                if (currtextBox.Text.Length >= 3)
-                {
-                    StationSuggestionsSource = MethodConnector.GetStationSuggestions(currtextBox.Text);
-                  
-                    currtextBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                    currtextBox.AutoCompleteCustomSource = StationSuggestionsSource;
-                    currtextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
-                }
+                StationSuggestionsSource = MethodConnector.GetStationSuggestions(currtextBox.Text);
+                currtextBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                currtextBox.AutoCompleteCustomSource = StationSuggestionsSource;
+                currtextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
             }
-            catch (NoStationFoundException ex)
-            {
-                MessageBox.Show(ex.Message, "Fehler");
-                return;
-            }
+
         }
 
         /// <summary>
@@ -62,74 +54,56 @@ namespace SwissTransportUI
         /// <param name="e"></param>
         private void btnSearchConnections_Click(object sender, EventArgs e)
         {
+            listConnections.Items.Clear();
+
             if (txtFrom.Text == "" || txtTo.Text == "")
             {
                 MessageBox.Show("Bitte gebe beide Stationen an.", "Eingabefehler");
             }
-            else
+
+            DateTime dateTime = Convert.ToDateTime(dtpDate.Text).Date.Add(Convert.ToDateTime(dtpTime.Text).TimeOfDay);
+            bool btnOnArrival = rdBtnArrival.Checked;
+            Connections connections = MethodConnector.GetConnections(txtFrom.Text, txtTo.Text, dateTime, btnOnArrival);
+
+            if (connections == null)
             {
-                DateTime dateTime = Convert.ToDateTime(dtpDate.Text).Date.Add(Convert.ToDateTime(dtpTime.Text).TimeOfDay);
-                bool btnOnArrival = rdBtnArrival.Checked;
-                try
-                {
-                    listConnections.Items.Clear();
-                    Connections connections = MethodConnector.GetConnections(txtFrom.Text, txtTo.Text, dateTime, btnOnArrival);
-                    
-                    foreach (Connection result in connections.ConnectionList)
-                    {
-                        listConnections.Items.Add(result.From.Departure + ": " + result.From.Station.Name
-                            + " to " + result.To.Station.Name + " (" + result.Duration + ")");
-                    }
-                    //listConnections.Items.AddRange(searchResults);
-                }
-                catch (NoConnectionFoundException ex)
-                {
-                    MessageBox.Show(ex.Message, "Keine Verbindung gefunden.");
-                    txtStartStation.Text = "";
-                    txtFrom.Text = "";
-                    txtTo.Text = "";
-                    return;
-                }
+                MessageBox.Show("Es wurden keine Verbindungen gefunden.", "Fehler beim Suchen.");
+
+            }
+
+            foreach (Connection connection in connections.ConnectionList)
+            {
+                listConnections.Items.Add(connection.From.Departure + ": " + connection.From.Station.Name
+                    + " to " + connection.To.Station.Name + " (" + connection.Duration + ")");
             }
         }
 
         private void btnCreateTimeTable_Click(object sender, EventArgs e)
         {
+            listTimeTable.Items.Clear();
+
             if (txtStartStation.Text == "")
             {
                 MessageBox.Show("Bitte gib eine gültige Station ein.");
             }
-            else
+
+            List<StationBoard> stationBoardEntries = MethodConnector.GetStationBoard(txtStartStation.Text);
+            if (stationBoardEntries.Count == 0)
             {
-                try
-                {
-                    listTimeTable.Items.Clear();
-                    List<StationBoard> stationBoardEntries = MethodConnector.GetStationBoard(txtStartStation.Text);
-                    foreach (StationBoard entry in stationBoardEntries)
-                    {
-                        listTimeTable.Items.Add(entry.Number + ": name : " + entry.Name
-                            + ": stop : " + entry.Stop.Departure + " : to : " + entry.To);
-                    }
-                }
-                catch (NoStationBoardFoundException ex)
-                {
-                    MessageBox.Show(ex.Message, "Error");
-                    return;
-                }
+                MessageBox.Show("Es wurden keine Verbindungen zu der Station " + txtStartStation.Text + " gefunden.", "Fehler beim Erstellen.");
+
+            }
+            foreach (StationBoard entry in stationBoardEntries)
+            {
+                listTimeTable.Items.Add(entry.Number + ": name : " + entry.Name
+                    + ": stop : " + entry.Stop.Departure + " : to : " + entry.To);
             }
         }
 
         private void btnShowStation_Click(object sender, EventArgs e)
         {
-            try
-            {
-                System.Diagnostics.Process.Start("https://google.com/maps/place/" + MethodConnector.GetStationCoordinates(txtStartStation.Text));
-            }
-            catch (NoStationFoundException ex)
-            {
-                MessageBox.Show(ex.Message, "Error");
-                return;
-            }
+            System.Diagnostics.Process.Start("https://google.com/maps/place/" + MethodConnector.GetStationCoordinates(txtStartStation.Text));
+
         }
     }
 }

@@ -69,7 +69,12 @@ namespace SwissTransportUI
         /// <returns> Connections </returns>
         public string GetStationCoordinates(string Station)
         {
-            return transportAPI.GetStations(Station).StationList[0].Coordinate.XCoordinate.ToString().Replace(',', '.') + "," + stations.StationList[0].Coordinate.YCoordinate.ToString().Replace(',', '.');
+            Stations stations = transportAPI.GetStations(Station);
+            if (stations.StationList[0].Coordinate == null)
+            {
+                throw new Exception("Der Standort der Station " + Station + " konnte nicht gefunden werden.");
+            }
+            return stations.StationList[0].Coordinate.XCoordinate.ToString().Replace(',', '.') + "," + stations.StationList[0].Coordinate.YCoordinate.ToString().Replace(',', '.');
         }
 
     }
