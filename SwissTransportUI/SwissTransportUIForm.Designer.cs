@@ -248,7 +248,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(913, 537);
+            this.ClientSize = new System.Drawing.Size(612, 527);
             this.Controls.Add(this.tabTimeTablePage);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SwissTransportUIForm";
