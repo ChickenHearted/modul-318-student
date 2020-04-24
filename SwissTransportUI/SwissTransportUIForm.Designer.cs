@@ -37,10 +37,10 @@
             this.tabTimeTablePage = new System.Windows.Forms.TabControl();
             this.tabConnectionPage = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.lblStartStation = new System.Windows.Forms.Label();
-            this.txtStartStation = new System.Windows.Forms.TextBox();
-            this.btnCreateTimeTable = new System.Windows.Forms.Button();
             this.listTimeTable = new System.Windows.Forms.ListBox();
+            this.btnCreateTimeTable = new System.Windows.Forms.Button();
+            this.txtStartStation = new System.Windows.Forms.TextBox();
+            this.lblStartStation = new System.Windows.Forms.Label();
             this.tabTimeTablePage.SuspendLayout();
             this.tabConnectionPage.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -146,21 +146,14 @@
             this.tabPage2.Text = "Abfahrttafel";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // lblStartStation
+            // listTimeTable
             // 
-            this.lblStartStation.AutoSize = true;
-            this.lblStartStation.Location = new System.Drawing.Point(18, 19);
-            this.lblStartStation.Name = "lblStartStation";
-            this.lblStartStation.Size = new System.Drawing.Size(79, 16);
-            this.lblStartStation.TabIndex = 0;
-            this.lblStartStation.Text = "Start Station";
-            // 
-            // txtStartStation
-            // 
-            this.txtStartStation.Location = new System.Drawing.Point(21, 38);
-            this.txtStartStation.Name = "txtStartStation";
-            this.txtStartStation.Size = new System.Drawing.Size(203, 22);
-            this.txtStartStation.TabIndex = 1;
+            this.listTimeTable.FormattingEnabled = true;
+            this.listTimeTable.ItemHeight = 16;
+            this.listTimeTable.Location = new System.Drawing.Point(21, 87);
+            this.listTimeTable.Name = "listTimeTable";
+            this.listTimeTable.Size = new System.Drawing.Size(744, 276);
+            this.listTimeTable.TabIndex = 3;
             // 
             // btnCreateTimeTable
             // 
@@ -172,14 +165,23 @@
             this.btnCreateTimeTable.UseVisualStyleBackColor = true;
             this.btnCreateTimeTable.Click += new System.EventHandler(this.btnCreateTimeTable_Click);
             // 
-            // listTimeTable
+            // txtStartStation
             // 
-            this.listTimeTable.FormattingEnabled = true;
-            this.listTimeTable.ItemHeight = 16;
-            this.listTimeTable.Location = new System.Drawing.Point(21, 87);
-            this.listTimeTable.Name = "listTimeTable";
-            this.listTimeTable.Size = new System.Drawing.Size(744, 276);
-            this.listTimeTable.TabIndex = 3;
+            this.txtStartStation.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtStartStation.Location = new System.Drawing.Point(21, 38);
+            this.txtStartStation.Name = "txtStartStation";
+            this.txtStartStation.Size = new System.Drawing.Size(203, 22);
+            this.txtStartStation.TabIndex = 1;
+            this.txtStartStation.TextChanged += new System.EventHandler(this.GetStationSuggestions);
+            // 
+            // lblStartStation
+            // 
+            this.lblStartStation.AutoSize = true;
+            this.lblStartStation.Location = new System.Drawing.Point(18, 19);
+            this.lblStartStation.Name = "lblStartStation";
+            this.lblStartStation.Size = new System.Drawing.Size(79, 16);
+            this.lblStartStation.TabIndex = 0;
+            this.lblStartStation.Text = "Start Station";
             // 
             // SwissTransportUIForm
             // 

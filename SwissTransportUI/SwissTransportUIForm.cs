@@ -47,13 +47,6 @@ namespace SwissTransportUI
                     currtextBox.AutoCompleteCustomSource = StationSuggestionsSource;
                     currtextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
                 }
-                else
-                {
-                    //if (currtextBox.AutoCompleteSource != AutoCompleteSource.None)
-                    //{
-                        //currtextBox.AutoCompleteSource = AutoCompleteSource.None;
-                    //}
-                }
             }
             catch (NoStationFoundException ex)
             {
