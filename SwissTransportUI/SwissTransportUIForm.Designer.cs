@@ -35,20 +35,24 @@
             this.txtTo = new System.Windows.Forms.TextBox();
             this.listConnections = new System.Windows.Forms.ListBox();
             this.tabTimeTablePage = new System.Windows.Forms.TabControl();
-            this.tabConnectionPage = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabConnection = new System.Windows.Forms.TabPage();
+            this.tabTimeTable = new System.Windows.Forms.TabPage();
             this.listTimeTable = new System.Windows.Forms.ListBox();
             this.btnCreateTimeTable = new System.Windows.Forms.Button();
             this.txtStartStation = new System.Windows.Forms.TextBox();
             this.lblStartStation = new System.Windows.Forms.Label();
+            this.dtpDate = new System.Windows.Forms.DateTimePicker();
+            this.dtpTime = new System.Windows.Forms.DateTimePicker();
+            this.rdBtnDeparture = new System.Windows.Forms.RadioButton();
+            this.rdBtnArrival = new System.Windows.Forms.RadioButton();
             this.tabTimeTablePage.SuspendLayout();
-            this.tabConnectionPage.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabConnection.SuspendLayout();
+            this.tabTimeTable.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSearchConnections
             // 
-            this.btnSearchConnections.Location = new System.Drawing.Point(566, 18);
+            this.btnSearchConnections.Location = new System.Drawing.Point(388, 72);
             this.btnSearchConnections.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearchConnections.Name = "btnSearchConnections";
             this.btnSearchConnections.Size = new System.Drawing.Size(166, 54);
@@ -70,7 +74,7 @@
             // lblTo
             // 
             this.lblTo.AutoSize = true;
-            this.lblTo.Location = new System.Drawing.Point(294, 18);
+            this.lblTo.Location = new System.Drawing.Point(290, 18);
             this.lblTo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTo.Name = "lblTo";
             this.lblTo.Size = new System.Drawing.Size(40, 16);
@@ -90,7 +94,7 @@
             // txtTo
             // 
             this.txtTo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.txtTo.Location = new System.Drawing.Point(298, 37);
+            this.txtTo.Location = new System.Drawing.Point(293, 37);
             this.txtTo.Margin = new System.Windows.Forms.Padding(4);
             this.txtTo.Name = "txtTo";
             this.txtTo.Size = new System.Drawing.Size(261, 22);
@@ -101,58 +105,62 @@
             // 
             this.listConnections.FormattingEnabled = true;
             this.listConnections.ItemHeight = 16;
-            this.listConnections.Location = new System.Drawing.Point(23, 76);
+            this.listConnections.Location = new System.Drawing.Point(23, 139);
             this.listConnections.Name = "listConnections";
-            this.listConnections.Size = new System.Drawing.Size(709, 276);
+            this.listConnections.Size = new System.Drawing.Size(531, 276);
             this.listConnections.TabIndex = 5;
             // 
             // tabTimeTablePage
             // 
-            this.tabTimeTablePage.Controls.Add(this.tabConnectionPage);
-            this.tabTimeTablePage.Controls.Add(this.tabPage2);
+            this.tabTimeTablePage.Controls.Add(this.tabConnection);
+            this.tabTimeTablePage.Controls.Add(this.tabTimeTable);
             this.tabTimeTablePage.Location = new System.Drawing.Point(12, 12);
             this.tabTimeTablePage.Name = "tabTimeTablePage";
             this.tabTimeTablePage.SelectedIndex = 0;
-            this.tabTimeTablePage.Size = new System.Drawing.Size(794, 407);
+            this.tabTimeTablePage.Size = new System.Drawing.Size(587, 490);
             this.tabTimeTablePage.TabIndex = 6;
             // 
-            // tabConnectionPage
+            // tabConnection
             // 
-            this.tabConnectionPage.Controls.Add(this.txtFrom);
-            this.tabConnectionPage.Controls.Add(this.listConnections);
-            this.tabConnectionPage.Controls.Add(this.btnSearchConnections);
-            this.tabConnectionPage.Controls.Add(this.txtTo);
-            this.tabConnectionPage.Controls.Add(this.lblFrom);
-            this.tabConnectionPage.Controls.Add(this.lblTo);
-            this.tabConnectionPage.Location = new System.Drawing.Point(4, 25);
-            this.tabConnectionPage.Name = "tabConnectionPage";
-            this.tabConnectionPage.Padding = new System.Windows.Forms.Padding(3);
-            this.tabConnectionPage.Size = new System.Drawing.Size(786, 378);
-            this.tabConnectionPage.TabIndex = 0;
-            this.tabConnectionPage.Text = "Verbindungen";
-            this.tabConnectionPage.UseVisualStyleBackColor = true;
+            this.tabConnection.Controls.Add(this.rdBtnArrival);
+            this.tabConnection.Controls.Add(this.rdBtnDeparture);
+            this.tabConnection.Controls.Add(this.dtpTime);
+            this.tabConnection.Controls.Add(this.dtpDate);
+            this.tabConnection.Controls.Add(this.txtFrom);
+            this.tabConnection.Controls.Add(this.listConnections);
+            this.tabConnection.Controls.Add(this.btnSearchConnections);
+            this.tabConnection.Controls.Add(this.txtTo);
+            this.tabConnection.Controls.Add(this.lblFrom);
+            this.tabConnection.Controls.Add(this.lblTo);
+            this.tabConnection.Location = new System.Drawing.Point(4, 25);
+            this.tabConnection.Name = "tabConnection";
+            this.tabConnection.Padding = new System.Windows.Forms.Padding(3);
+            this.tabConnection.Size = new System.Drawing.Size(579, 461);
+            this.tabConnection.TabIndex = 0;
+            this.tabConnection.Text = "Verbindungen";
+            this.tabConnection.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // tabTimeTable
             // 
-            this.tabPage2.Controls.Add(this.listTimeTable);
-            this.tabPage2.Controls.Add(this.btnCreateTimeTable);
-            this.tabPage2.Controls.Add(this.txtStartStation);
-            this.tabPage2.Controls.Add(this.lblStartStation);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(786, 378);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Abfahrttafel";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabTimeTable.Controls.Add(this.listTimeTable);
+            this.tabTimeTable.Controls.Add(this.btnCreateTimeTable);
+            this.tabTimeTable.Controls.Add(this.txtStartStation);
+            this.tabTimeTable.Controls.Add(this.lblStartStation);
+            this.tabTimeTable.Location = new System.Drawing.Point(4, 25);
+            this.tabTimeTable.Name = "tabTimeTable";
+            this.tabTimeTable.Padding = new System.Windows.Forms.Padding(3);
+            this.tabTimeTable.Size = new System.Drawing.Size(579, 461);
+            this.tabTimeTable.TabIndex = 1;
+            this.tabTimeTable.Text = "Abfahrttafel";
+            this.tabTimeTable.UseVisualStyleBackColor = true;
             // 
             // listTimeTable
             // 
             this.listTimeTable.FormattingEnabled = true;
             this.listTimeTable.ItemHeight = 16;
-            this.listTimeTable.Location = new System.Drawing.Point(21, 87);
+            this.listTimeTable.Location = new System.Drawing.Point(21, 116);
             this.listTimeTable.Name = "listTimeTable";
-            this.listTimeTable.Size = new System.Drawing.Size(744, 276);
+            this.listTimeTable.Size = new System.Drawing.Size(534, 276);
             this.listTimeTable.TabIndex = 3;
             // 
             // btnCreateTimeTable
@@ -183,21 +191,62 @@
             this.lblStartStation.TabIndex = 0;
             this.lblStartStation.Text = "Start Station";
             // 
+            // dtpDate
+            // 
+            this.dtpDate.CustomFormat = "";
+            this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDate.Location = new System.Drawing.Point(24, 78);
+            this.dtpDate.Name = "dtpDate";
+            this.dtpDate.Size = new System.Drawing.Size(103, 22);
+            this.dtpDate.TabIndex = 6;
+            // 
+            // dtpTime
+            // 
+            this.dtpTime.CustomFormat = "HH:mm";
+            this.dtpTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTime.Location = new System.Drawing.Point(24, 106);
+            this.dtpTime.Name = "dtpTime";
+            this.dtpTime.ShowUpDown = true;
+            this.dtpTime.Size = new System.Drawing.Size(103, 22);
+            this.dtpTime.TabIndex = 7;
+            // 
+            // rdBtnDeparture
+            // 
+            this.rdBtnDeparture.AutoSize = true;
+            this.rdBtnDeparture.Checked = true;
+            this.rdBtnDeparture.Location = new System.Drawing.Point(142, 81);
+            this.rdBtnDeparture.Name = "rdBtnDeparture";
+            this.rdBtnDeparture.Size = new System.Drawing.Size(68, 20);
+            this.rdBtnDeparture.TabIndex = 8;
+            this.rdBtnDeparture.TabStop = true;
+            this.rdBtnDeparture.Text = "Abfahrt";
+            this.rdBtnDeparture.UseVisualStyleBackColor = true;
+            // 
+            // rdBtnArrival
+            // 
+            this.rdBtnArrival.AutoSize = true;
+            this.rdBtnArrival.Location = new System.Drawing.Point(142, 106);
+            this.rdBtnArrival.Name = "rdBtnArrival";
+            this.rdBtnArrival.Size = new System.Drawing.Size(69, 20);
+            this.rdBtnArrival.TabIndex = 9;
+            this.rdBtnArrival.Text = "Ankunft";
+            this.rdBtnArrival.UseVisualStyleBackColor = true;
+            // 
             // SwissTransportUIForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1065, 538);
+            this.ClientSize = new System.Drawing.Size(913, 537);
             this.Controls.Add(this.tabTimeTablePage);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SwissTransportUIForm";
             this.Text = "SwissTranport";
             this.Load += new System.EventHandler(this.SwissTransportUIForm_Load);
             this.tabTimeTablePage.ResumeLayout(false);
-            this.tabConnectionPage.ResumeLayout(false);
-            this.tabConnectionPage.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.tabConnection.ResumeLayout(false);
+            this.tabConnection.PerformLayout();
+            this.tabTimeTable.ResumeLayout(false);
+            this.tabTimeTable.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -211,12 +260,16 @@
         private System.Windows.Forms.TextBox txtTo;
         private System.Windows.Forms.ListBox listConnections;
         private System.Windows.Forms.TabControl tabTimeTablePage;
-        private System.Windows.Forms.TabPage tabConnectionPage;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabConnection;
+        private System.Windows.Forms.TabPage tabTimeTable;
         private System.Windows.Forms.Button btnCreateTimeTable;
         private System.Windows.Forms.TextBox txtStartStation;
         private System.Windows.Forms.Label lblStartStation;
         private System.Windows.Forms.ListBox listTimeTable;
+        private System.Windows.Forms.DateTimePicker dtpTime;
+        private System.Windows.Forms.DateTimePicker dtpDate;
+        private System.Windows.Forms.RadioButton rdBtnArrival;
+        private System.Windows.Forms.RadioButton rdBtnDeparture;
     }
 }
 

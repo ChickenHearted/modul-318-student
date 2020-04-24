@@ -17,14 +17,14 @@ namespace SwissTransportUI
         /// <summary>
         /// Method provides Station suggestions.
         /// </summary>
-        /// <param name="query"></param>
+        /// <param name="CurrentQuery"></param>
         /// <returns> AutoCompleteStringCollection </returns>
-        public AutoCompleteStringCollection GetStationSuggestions(string query)
+        public AutoCompleteStringCollection GetStationSuggestions(string CurrentQuery)
         {
 
             AutoCompleteStringCollection resCollection = new AutoCompleteStringCollection();
-            stations = transportAPI.GetStations(query);
-            Query = query;
+            stations = transportAPI.GetStations(CurrentQuery);
+            Query = CurrentQuery;
             foreach (Station station in stations.StationList)
             {
                 resCollection.Add(station.Name);
@@ -38,15 +38,17 @@ namespace SwissTransportUI
         /// </summary>
         /// <param name="FromStation"></param>
         /// <param name="ToStation"></param>
+        /// <param name="DateTimeOfConnections"></param>
+        /// <param name="BtnOnArrival"></param>
         /// <returns></returns>
-        public Connections GetConnections(string FromStation, string ToStation)
+        public Connections GetConnections(string FromStation, string ToStation, DateTime DateTimeOfConnections, bool BtnOnArrival)
         {
-            /*
-            List<Connection> resultConnections = new List<Connection>();
-            Connections currentConnections = transportAPI.GetConnections(FromStation, ToStation);
-            resultConnections.AddRange(currentConnections.ConnectionList);
-            */
-            return transportAPI.GetConnections(FromStation, ToStation);
+            string BtnOnArrivalInString = "1";
+            if (BtnOnArrival == false)
+            {
+                BtnOnArrivalInString = "0";
+            }
+            return transportAPI.GetConnections(FromStation, ToStation, DateTimeOfConnections, BtnOnArrivalInString);
         }
 
         /// <summary>

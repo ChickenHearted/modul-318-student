@@ -68,11 +68,12 @@ namespace SwissTransportUI
             }
             else
             {
-                
+                DateTime dateTime = Convert.ToDateTime(dtpDate.Text).Date.Add(Convert.ToDateTime(dtpTime.Text).TimeOfDay);
+                bool btnOnArrival = rdBtnArrival.Checked;
                 try
                 {
                     listConnections.Items.Clear();
-                    Connections connections = MethodConnector.GetConnections(txtFrom.Text, txtTo.Text);
+                    Connections connections = MethodConnector.GetConnections(txtFrom.Text, txtTo.Text, dateTime, btnOnArrival);
                     
                     foreach (Connection result in connections.ConnectionList)
                     {
@@ -83,7 +84,8 @@ namespace SwissTransportUI
                 }
                 catch (NoConnectionFoundException ex)
                 {
-                    MessageBox.Show(ex.Message, "Fehler");
+                    MessageBox.Show(ex.Message, "Keine Verbindung gefunden.");
+                    txtStartStation.Text = "";
                     txtFrom.Text = "";
                     txtTo.Text = "";
                     return;
