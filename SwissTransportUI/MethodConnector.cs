@@ -49,5 +49,16 @@ namespace SwissTransportUI
             return transportAPI.GetConnections(FromStation, ToStation);
         }
 
+        /// <summary>
+        /// Method gets the connections of the StationBoard from Start Station.
+        /// </summary>
+        /// <param name="Station"></param>
+        /// <returns> Connections </returns>
+        public List<StationBoard> GetStationBoard(string Station)
+        {
+            string id = transportAPI.GetStations(Station).StationList[0].Id;
+            return transportAPI.GetStationBoard(Station, id).Entries;
+        }
+
     }
 }

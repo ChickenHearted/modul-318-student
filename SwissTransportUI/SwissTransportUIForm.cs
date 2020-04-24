@@ -97,5 +97,31 @@ namespace SwissTransportUI
                 }
             }
         }
+
+        private void btnCreateTimeTable_Click(object sender, EventArgs e)
+        {
+            if (txtStartStation.Text == "")
+            {
+                MessageBox.Show("Bitte gib eine gültige Station ein.");
+            }
+            else
+            {
+                try
+                {
+                    listTimeTable.Items.Clear();
+                    List<StationBoard> stationBoardEntries = MethodConnector.GetStationBoard(txtStartStation.Text);
+                    foreach (StationBoard entry in stationBoardEntries)
+                    {
+                        listTimeTable.Items.Add(entry.Number + ": name : " + entry.Name
+                            + ": stop : " + entry.Stop.Departure + " : to : " + entry.To);
+                    }
+                }
+                catch (NoStationBoardFoundException ex)
+                {
+                    MessageBox.Show(ex.Message, "Error");
+                    return;
+                }
+            }
+        }
     }
 }
